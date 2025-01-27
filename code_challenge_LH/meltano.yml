@@ -1,0 +1,22 @@
+version: 1
+default_environment: dev
+project_id: 5e7791c0-6497-4459-a0b8-306d31a32a79
+environments:
+  - name: dev
+  - name: staging
+  - name: prod
+plugins:
+  extractors:
+    - name: tap-postgres
+      config:
+        host: localhost
+        port: 5432
+        user: airflow
+        password: airflow
+        dbname: northwind
+        tables:
+          - orders
+    - name: tap-csv
+      config:
+        files:
+          - path: ../order_details.csv
